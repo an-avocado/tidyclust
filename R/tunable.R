@@ -21,7 +21,7 @@ tunable.cluster_spec <- function(x, ...) {
   arg_name <- paste0(mod_type(x), "_args")
   if (!(any(arg_name == names(mod_env)))) {
     cli::cli_abort(
-      "The {.pkg tidyclust} model database doesn't know about the arguments for 
+      "The {.pkg tidyclust} model database doesn't know about the arguments for
    model {.code {mod_type(x)}}. Was it registered?"
     )
   }
@@ -92,6 +92,33 @@ stats_k_means_engine_args <-
     component_id = "engine"
   )
 
+######## traj_k_means #########
+#' @rdname tunable.cluster_spec
+#' @export
+tunable.traj_k_means <- function(x, ...) {
+  res <- NextMethod()
+  if (x$engine == "clustra") {
+    res <- add_engine_parameters(res, clustra_traj_k_means_engine_args)
+  }
+  res
+}
+
+#?
+clustra_traj_k_means_engine_args <-
+  tibble::tibble(
+    name = c(
+      "centers"
+    ),
+    call_info = list(
+      list(pkg = "tidyclust", fun = "num_clusters")
+    ),
+    source = "cluster_spec",
+    component = "k_means",
+    component_id = "engine"
+  )
+#?
+
+######## traj_k_means #########
 
 #' @rdname tunable.cluster_spec
 #' @export

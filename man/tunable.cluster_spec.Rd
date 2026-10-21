@@ -4,6 +4,7 @@
 \alias{tunable.cluster_spec}
 \alias{tunable.hier_clust}
 \alias{tunable.k_means}
+\alias{tunable.traj_k_means}
 \alias{tunable.db_clust}
 \alias{tunable.gm_clust}
 \title{Get tunable parameters for a cluster specification}
@@ -13,6 +14,8 @@
 \method{tunable}{hier_clust}(x, ...)
 
 \method{tunable}{k_means}(x, ...)
+
+\method{tunable}{traj_k_means}(x, ...)
 
 \method{tunable}{db_clust}(x, ...)
 
